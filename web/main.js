@@ -9,7 +9,7 @@ var responsable = "";
 var tarea = "";
 
 $(document).ready(function(){
-               
+        
     $('#servicios').change(function(){
         
         $("#unidades").prop('selectedIndex',0);
@@ -52,7 +52,5 @@ $(document).ready(function(){
     $('#responsables').change(function(){
         responsable = $(this).val();
     });
-   
-
 });
 
