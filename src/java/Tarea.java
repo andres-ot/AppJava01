@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,7 +60,8 @@ public class Tarea extends HttpServlet {
                 out.println(ex);
             }
             
-            String json = new Gson().toJson(lista);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String json = gson.toJson(lista);
             response.setContentType("application/json;charset=UTF-8");
             out.write(json);
         }

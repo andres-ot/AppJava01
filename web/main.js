@@ -52,5 +52,16 @@ $(document).ready(function(){
     $('#responsables').change(function(){
         responsable = $(this).val();
     });
+    
+    $.get('/AppJava01/Tarea', function(data){
+        
+    }).done(function(data){
+        $.each(data, function(v,i){
+           servicio = i;
+            if ( data[v].servicio_id == 2 ){
+                $('.container').append("<h1>"+servicio.nombre+"</h1>");
+            }
+        });
+    });
 });
 
