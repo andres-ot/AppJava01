@@ -3,65 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var servicio = "";
-var unidad = "";
-var responsable = "";
-var tarea = "";
+$('select').select2();
 
-$(document).ready(function(){
-        
-    $('#servicios').change(function(){
-        
-        $("#unidades").prop('selectedIndex',0);
-        servicio = $(this).val();
-        
-        $.each($("#unidades option"), function(v,i){
-            $(this).show();
-        });
-        
-        $.each($("#unidades option"), function(v,i){
-            if ( $(this).attr('x-data-parent') !== servicio )
-            {
-                $(this).hide();
-            }
-        });
-        $('#unidades').prop('disabled', false);
+$.get("/weajquery/Tarea?modulo=servicios", function(data){
+}).done(function(data){
+    $.each(data, function( i, objeto ){
+        $("#servicios").append("<option value='"+objeto.servicio_id+"'>"+objeto.nombre+"</option>");
     });
+}).fail(function(data){
+    console.log(data);
+});
+
+$("#servicios").change( function(){
+    // limpiar options del select
+    $('#responsables').prop('disabled', true);
+    $("#unidades > option").remove();
     
-    $('#unidades').change(function(){
-        
-        $("#responsables").prop('selectedIndex',0);
-        
-        unidad = $(this).val();
-        console.log(unidad);
-        
-        $.each($("#responsables option"), function(v,i){
-            $(this).show();
-        });
-        
-        $.each($("#responsables option"), function(v,i){
-            if ( $(this).attr('x-data-parent') != unidad )
-            {
-                $(this).hide();
-            }
-        });
-        
-        $('#responsables').prop('disabled', false);
-    });
-    
-    $('#responsables').change(function(){
-        responsable = $(this).val();
-    });
-    
-    $.get('/AppJava01/Tarea', function(data){
+    // cargar elementos
+    var id_servicio = $(this).val();
+    var url = "/weajquery/Tarea?modulo=unidades&servicio_id="+id_servicio;
+    console.log(url);
+    $.get(url, function(data){
         
     }).done(function(data){
-        $.each(data, function(v,i){
-           servicio = i;
-            if ( data[v].servicio_id == 2 ){
-                $('.container').append("<h1>"+servicio.nombre+"</h1>");
-            }
+        
+        $.each(data, function(i,objeto){
+            $("#unidades").append("<option value='"+objeto.servicio_id+"'>"+objeto.nombre+"</option>");
         });
+
+    }).fail(function(data){
+        
     });
+    // 1 activar
+    $("#unidades").prop('disabled', false);
+
+});
+
+$('#unidades').change(function(){
+   
+   $('#responsables > option').remove();
+   var id_unidad = $(this).val();
+   var url = "/weajquery/Tarea?modulo=responsables&unidad_id="+id_unidad;
+   $.get(url, function(data){
+       
+   }).done(function(data){
+       $.each(data, function(i,objeto){
+            $("#responsables").append("<option value='"+objeto.servicio_id+"'>"+objeto.nombre+"</option>");
+       });
+   }).fail(function(data){
+      
+   });
+   
+   $('#responsables').prop('disabled', false);
 });
 

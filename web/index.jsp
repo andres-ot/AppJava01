@@ -5,11 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.sql.ResultSet" %>
-<%@page import="Controller.Responsable" %>
-<%@page import="Controller.Unidad"%>
-<%@page import="Controller.Servicio"%>
-
 
 <!DOCTYPE html>
 <!--
@@ -24,6 +19,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container">
@@ -36,13 +32,6 @@ and open the template in the editor.
                         <caption>Servicios</caption>
                         <select class="form-control" name="servicios" id="servicios">
                             <option>Seleccione un servicios...</option>
-                            <% 
-                                Servicio ser = new Servicio();
-                                ResultSet servicios = ser.getAll();
-                                while ( servicios.next() ) {
-                                    out.println("<option value=\""+servicios.getString("servicio_id")+"\">"+servicios.getString("nombre")+"</option>");
-                                }
-                            %>
                         </select>
                     </div>
                     
@@ -50,13 +39,6 @@ and open the template in the editor.
                         <caption>Unidades</caption>
                         <select class="form-control" name="unidades" id="unidades" disabled>
                             <option>Seleccione un unidades...</option>
-                            <% 
-                                Unidad un = new Unidad();
-                                ResultSet unidades = un.getAll();
-                                while ( unidades.next() ) {
-                                    out.println("<option x-data-parent=\""+unidades.getString("servicio_id")+"\" value=\""+unidades.getString("unidad_id")+"\">"+unidades.getString("nombre")+"</option>");
-                                }
-                            %>
                         </select>
                     </div>
                     
@@ -64,14 +46,6 @@ and open the template in the editor.
                         <caption>Responsable</caption>
                         <select class="form-control" name="responsabilidad" id="responsables" disabled>
                             <option>Seleccione un responsable...</option>
-                            <% 
-                                Responsable res = new Responsable();
-                                ResultSet responsables = res.getAll();
-                                while ( responsables.next() ) {
-                                    out.println("<option <option x-data-parent=\""+responsables.getString("unidad_id")+"\" value=\""+responsables.getString("reponsable_id")+"\">"+responsables.getString("nombre")+"</option>");
-                                }
-                            %>
-                            
                         </select>
                     </div>
                     
@@ -88,8 +62,9 @@ and open the template in the editor.
             </div>            
         </div>
 
-       <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+        <script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <script src="main.js" type="text/javascript"></script>
     </body>
 </html>
