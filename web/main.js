@@ -48,7 +48,7 @@ $('#unidades').change(function(){
        
    }).done(function(data){
        $.each(data, function(i,objeto){
-            $("#responsables").append("<option value='"+objeto.servicio_id+"'>"+objeto.nombre+"</option>");
+            $("#responsables").append("<option value='"+objeto.responsable_id+"'>"+objeto.nombre+"</option>");
        });
    }).fail(function(data){
       
@@ -57,3 +57,6 @@ $('#unidades').change(function(){
    $('#responsables').prop('disabled', false);
 });
 
+$("#fecha").datepicker({
+    format: 'yyyy-mm-dd'
+});
