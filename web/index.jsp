@@ -28,7 +28,7 @@ and open the template in the editor.
                 <div class="col-md-6 col-md-offset-3">
                     <h1>Asignar responsabilidades</h1>
                     <hr />
-                    <form method="post" action="/weajquery/Guardar">
+                    <form method="post" action="/AppJava01/Guardar">
                     <div class="form-group">
                         <caption>Servicios</caption>
                         <select class="form-control" name="servicios" id="servicios">

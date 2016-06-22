@@ -48,7 +48,7 @@ public class Guardar extends HttpServlet {
             tar.setFecha(fecha);
             tar.guardar();
             
-            response.sendRedirect("/weajquery/listar.jsp");
+            response.sendRedirect("/AppJava01/listar.jsp");
             
 
  

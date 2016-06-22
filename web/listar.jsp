@@ -33,7 +33,7 @@
                     <br>
                     <br>
                     
-                        Buscar por Nombre:<input type="text" name="buscarNombre" ><input type="submit" value="Buscar">
+                 
                     </form>
                     <br>
                     <br>
